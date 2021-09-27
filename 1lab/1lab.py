@@ -1,6 +1,5 @@
 import csv
 import os
-import sys
 from collections import namedtuple
 from math import sqrt
 from typing import List, Tuple
@@ -8,7 +7,7 @@ from typing import List, Tuple
 from sklearn.model_selection import train_test_split
 
 # set path to resources and define default variables
-script_path = os.path.abspath(sys.argv[0])
+script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(script_path)
 res_dir = os.path.abspath(os.path.join(script_dir, "..", "res", "1lab"))
 
@@ -21,9 +20,7 @@ def read_csv(filepath: str) -> List[DataRow]:
     with open(filepath, 'r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
-            mrot = int(row['MrotInHour'])
-            salary = int(row['Salary'])
-            clazz = int(row['Class'])
+            mrot, salary, clazz = int(row['MrotInHour']), int(row['Salary']), int(row['Class'])
             datarow_list.append(DataRow(mrot, salary, clazz))
     return datarow_list
 
@@ -33,7 +30,6 @@ def leave_one_out(train_list: List[DataRow], max_h: int = 5) -> Tuple[int, List[
     h_percent_list = []
     optimal_h = 0
     optimal_percent = 0
-    h = 2
 
     for h in range(2, max_h + 1):
         correct_classification = 0
