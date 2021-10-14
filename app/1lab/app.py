@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 # set path to resources and define default variables
 script_path = os.path.abspath(__file__)
 script_dir = os.path.dirname(script_path)
-res_dir = os.path.abspath(os.path.join(script_dir, "..", "res", "1lab"))
+res_dir = os.path.abspath(os.path.join(script_dir, "../..", "res", "1lab"))
 
 DataRow = namedtuple('DataRow', ['MrotInHour', 'Salary', 'Class'])
 DataRow.__eq__ = lambda a, b: a.MrotInHour == b.MrotInHour and a.Salary == b.Salary and a.Class == b.Class
